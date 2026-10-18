@@ -6,7 +6,7 @@ import { tools } from '@/config/tools';
 import { getToolContent } from '@/config/tool-content';
 import { ToolNodeData } from '@/types/workflow';
 import * as LucideIcons from 'lucide-react';
-import { Search, ChevronDown, ChevronRight, GripVertical, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
+import { Search, ChevronDown, ChevronRight, GripVertical, PanelLeftClose, PanelLeftOpen, Plus } from 'lucide-react';
 import { Locale } from '@/lib/i18n/config';
 import { WORKFLOW_TOOL_DROP_EVENT } from './dragEvents';
 
@@ -462,7 +462,7 @@ export function ToolSidebar({
                         {tWorkflow('toolbox') || 'Tool Box'}
                     </h2>
                     <p className="text-xs text-[hsl(var(--color-muted-foreground))] mt-1">
-                        {tWorkflow('dragToAdd') || 'Drag or double-click a tool to add it to the workflow'}
+                        {tWorkflow('dragToAdd') || 'Click or drag a tool to add it to the workflow'}
                     </p>
                 </div>
                 <button
@@ -523,7 +523,7 @@ export function ToolSidebar({
 
                                         const toolName = getToolName(tool.id);
                                         const hint = tWorkflow('addToWorkflowHint')
-                                            || 'Drag or double-click to add to workflow';
+                                            || 'Click or drag to add to workflow';
                                         return (
                                             <div
                                                 key={tool.id}
@@ -531,15 +531,27 @@ export function ToolSidebar({
                                                 onDragStart={(e) => handleDragStart(e, tool)}
                                                 onDragEnd={onDragEnd}
                                                 onPointerDown={(e) => handlePointerDown(e, tool)}
+                                                onClick={() => handleDoubleClick(tool)}
                                                 onDoubleClick={() => handleDoubleClick(tool)}
                                                 title={`${toolName} \u2014 ${hint}`}
-                                                className="flex items-center gap-2 px-4 py-2 mx-2 rounded-md cursor-grab hover:bg-[hsl(var(--color-muted))] active:cursor-grabbing transition-colors group select-none"
+                                                className="flex items-center gap-2 px-3 py-2 mx-2 rounded-md cursor-pointer hover:bg-[hsl(var(--color-muted))] active:scale-[0.99] transition-all group select-none"
                                             >
-                                                <GripVertical className="w-3 h-3 text-[hsl(var(--color-muted-foreground))] opacity-0 group-hover:opacity-100 transition-opacity" />
-                                                <ToolIcon className="w-4 h-4 text-[hsl(var(--color-muted-foreground))]" />
+                                                <GripVertical className="w-3 h-3 text-[hsl(var(--color-muted-foreground))] opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                                                <ToolIcon className="w-4 h-4 text-[hsl(var(--color-muted-foreground))] shrink-0" />
                                                 <span className="text-sm text-[hsl(var(--color-foreground))] truncate flex-1">
                                                     {toolName}
                                                 </span>
+                                                <button
+                                                    type="button"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        handleDoubleClick(tool);
+                                                    }}
+                                                    className="opacity-0 group-hover:opacity-100 p-1 hover:bg-[hsl(var(--color-primary)/0.15)] rounded text-[hsl(var(--color-primary))] transition-opacity"
+                                                    title="Add to canvas"
+                                                >
+                                                    <Plus className="w-3.5 h-3.5" />
+                                                </button>
                                             </div>
                                         );
                                     })}
