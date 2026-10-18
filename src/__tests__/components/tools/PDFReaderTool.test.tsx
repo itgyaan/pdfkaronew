@@ -119,7 +119,7 @@ describe('PDFReaderTool', () => {
     });
   });
 
-  it('responds to pdfcraft-print-requested message posted by viewer iframe', async () => {
+  it('responds to pdfkaro-print-requested message posted by viewer iframe', async () => {
     vi.spyOn(tauriBridge, 'isTauri').mockReturnValue(true);
     vi.spyOn(tauriBridge, 'getSystemPrinters').mockResolvedValue([
       { name: 'Office Printer', is_default: true, port_name: 'NET' },
@@ -136,7 +136,7 @@ describe('PDFReaderTool', () => {
     act(() => {
       window.dispatchEvent(
         new MessageEvent('message', {
-          data: { type: 'pdfcraft-print-requested' },
+          data: { type: 'pdfkaro-print-requested' },
         })
       );
     });

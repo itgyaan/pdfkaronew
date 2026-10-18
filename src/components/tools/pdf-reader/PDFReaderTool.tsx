@@ -161,7 +161,7 @@ export function PDFReaderTool({ className = '' }: PDFReaderToolProps) {
     // Listen for print requests emitted from PDF.js viewer iframe
     useEffect(() => {
         const handleMessage = (event: MessageEvent) => {
-            if (event.data?.type === 'pdfcraft-print-requested') {
+            if (event.data?.type === 'pdfkaro-print-requested') {
                 handleTriggerPrint();
             }
         };

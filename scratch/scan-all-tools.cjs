@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const srcDir = 'd:\\NextProject\\pdfcraft\\src\\components\\tools';
+const srcDir = 'd:\\NextProject\\pdfkaro\\src\\components\\tools';
 const CHINESE_REGEX = /[\u4e00-\u9fa5]/;
 
 const ignorePaths = [
@@ -107,7 +107,7 @@ console.log(`发现含有中文的文件数: ${matchFilesCount}`);
 console.log(`总计发现硬编码行数: ${totalMatches}`);
 
 // 写入 JSON 报告文件
-const reportPath = 'd:\\NextProject\\pdfcraft\\scratch\\chinese-scan-report.json';
+const reportPath = 'd:\\NextProject\\pdfkaro\\scratch\\chinese-scan-report.json';
 fs.writeFileSync(reportPath, JSON.stringify({
   filesScanned,
   matchFilesCount,

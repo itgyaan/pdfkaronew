@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const TOOL_CONTENT_DIR = 'd:\\NextProject\\pdfcraft\\src\\config\\tool-content';
+const TOOL_CONTENT_DIR = 'd:\\NextProject\\pdfkaro\\src\\config\\tool-content';
 
 // Loader to get English and Chinese data to fallback or refer to
 const enContentFile = path.join(TOOL_CONTENT_DIR, 'en.ts');
@@ -841,11 +841,11 @@ languages.forEach(lang => {
 // 2. Inject core messages translation
 console.log("=== INJECTING HIGH-FREQUENCY CORE MESSAGES TRANSLATIONS ===");
 
-const MESSAGES_DIR = 'd:\\NextProject\\pdfcraft\\messages';
+const MESSAGES_DIR = 'd:\\NextProject\\pdfkaro\\messages';
 const messageFiles = fs.readdirSync(MESSAGES_DIR).filter(f => f.endsWith('.json'));
 
 // Load untranslated JSON database to map keys
-const commonUntranslatedDB = JSON.parse(fs.readFileSync('d:\\NextProject\\pdfcraft\\scratch\\common-untranslated.json', 'utf8'));
+const commonUntranslatedDB = JSON.parse(fs.readFileSync('d:\\NextProject\\pdfkaro\\scratch\\common-untranslated.json', 'utf8'));
 
 messageFiles.forEach(file => {
   const lang = file.replace('.json', '');

@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const scanReportPath = 'd:\\NextProject\\pdfcraft\\scratch\\chinese-scan-report.json';
-const mappingPath = 'd:\\NextProject\\pdfcraft\\scratch\\mapping.json';
+const scanReportPath = 'd:\\NextProject\\pdfkaro\\scratch\\chinese-scan-report.json';
+const mappingPath = 'd:\\NextProject\\pdfkaro\\scratch\\mapping.json';
 
 const report = JSON.parse(fs.readFileSync(scanReportPath, 'utf8'));
 const mapping = JSON.parse(fs.readFileSync(mappingPath, 'utf8'));

@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SCRATCH_DIR = 'd:\\NextProject\\pdfcraft\\scratch';
+const SCRATCH_DIR = 'd:\\NextProject\\pdfkaro\\scratch';
 const pendingPath = path.join(SCRATCH_DIR, 'pending-all.json');
 
 if (!fs.existsSync(pendingPath)) {

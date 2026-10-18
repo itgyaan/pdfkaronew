@@ -1,17 +1,17 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.services.pdfcraft;
+  cfg = config.services.pdfkaro;
 in
 {
-  options.services.pdfcraft = {
-    enable = lib.mkEnableOption "PDFCraft - Professional PDF Tools";
+  options.services.pdfkaro = {
+    enable = lib.mkEnableOption "PDFKaro - Professional PDF Tools";
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.pdfcraft;
-      defaultText = lib.literalExpression "pkgs.pdfcraft";
-      description = "The PDFCraft package to use.";
+      default = pkgs.pdfkaro;
+      defaultText = lib.literalExpression "pkgs.pdfkaro";
+      description = "The PDFKaro package to use.";
     };
 
     port = lib.mkOption {
@@ -30,25 +30,25 @@ in
   config = lib.mkIf cfg.enable {
     nixpkgs.overlays = [
       (final: prev: {
-        pdfcraft = final.callPackage ./package.nix { };
+        pdfkaro = final.callPackage ./package.nix { };
       })
     ];
 
-    systemd.services.pdfcraft = {
-      description = "PDFCraft PDF Tools";
+    systemd.services.pdfkaro = {
+      description = "PDFKaro PDF Tools";
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
 
       environment = {
-        PDFCRAFT_PORT = toString cfg.port;
+        PDFKARO_PORT = toString cfg.port;
       };
 
       serviceConfig = {
-        ExecStart = "${cfg.package}/bin/pdfcraft";
+        ExecStart = "${cfg.package}/bin/pdfkaro";
         Restart = "on-failure";
         DynamicUser = true;
-        RuntimeDirectory = "pdfcraft";
-        StateDirectory = "pdfcraft";
+        RuntimeDirectory = "pdfkaro";
+        StateDirectory = "pdfkaro";
 
         # Hardening
         NoNewPrivileges = true;

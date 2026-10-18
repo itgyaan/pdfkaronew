@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const MESSAGES_DIR = 'd:\\NextProject\\pdfcraft\\messages';
+const MESSAGES_DIR = 'd:\\NextProject\\pdfkaro\\messages';
 
 const translations = {
   zh: {
@@ -40,7 +40,7 @@ const translations = {
       bronzeWax: "古铜赤金",
       enableDoubleKey: "启用证书双钥锁 (256位强加密)",
       decryptPasswordHelp: "设置解密所持密码 (PFX 解密密钥)",
-      passwordPlaceholder: "默认密码: pdfcraft",
+      passwordPlaceholder: "默认密码: pdfkaro",
       sealCoordinates: "数字证书盖印坐标: X: {x}px, Y: {y}px",
       clickToReposition: "在白纸处点击以重定位印章"
     },
@@ -641,7 +641,7 @@ const enDict = {
     bronzeWax: "Antique Crimson Bronze",
     enableDoubleKey: "Enable Certificate Double-Key Encryption (256-bit Strong Lock)",
     decryptPasswordHelp: "Set PFX Decryption Key Password",
-    passwordPlaceholder: "Default password: pdfcraft",
+    passwordPlaceholder: "Default password: pdfkaro",
     sealCoordinates: "Seal Coordinates: X: {x}px, Y: {y}px",
     clickToReposition: "Click anywhere to reposition the wax seal"
   },
@@ -1171,7 +1171,7 @@ const vocab = {
       "Antique Crimson Bronze": "Antike Karminbronze",
       "Enable Certificate Double-Key Encryption (256-bit Strong Lock)": "Zertifikat-Doppelverschlüsselung aktivieren (starke 256-Bit-Verschlüsselung)",
       "Set PFX Decryption Key Password": "PFX-Entschlüsselungspasswort festlegen",
-      "Default password: pdfcraft": "Standardpasswort: pdfcraft",
+      "Default password: pdfkaro": "Standardpasswort: pdfkaro",
       "Seal Coordinates: X: {x}px, Y: {y}px": "Siegel-Koordinaten: X: {x}px, Y: {y}px",
       "Click anywhere to reposition the wax seal": "Klicken Sie auf ein beliebiges Feld, um das Siegel neu zu positionieren",
       "Upload Academic PDF with Bibliographies": "Wissenschaftliches PDF mit Literaturverzeichnis hochladen",

@@ -34,7 +34,7 @@ const nextConfig = {
   // Enable static export for deployment flexibility
   output: 'export',
   
-  // Support deployment under a subpath (e.g., /pdfcraft/)
+  // Support deployment under a subpath (e.g., /pdfkaro/)
   // Use BASE_PATH or NEXT_PUBLIC_BASE_PATH environment variable
   basePath: process.env.BASE_PATH || process.env.NEXT_PUBLIC_BASE_PATH || '',
   

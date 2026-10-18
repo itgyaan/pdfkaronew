@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 function splitFile(lang, partSize) {
-  const filePath = `d:\\NextProject\\pdfcraft\\scratch\\pending-tool-content-${lang}.json`;
+  const filePath = `d:\\NextProject\\pdfkaro\\scratch\\pending-tool-content-${lang}.json`;
   if (!fs.existsSync(filePath)) return;
   
   const tools = JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -18,8 +18,8 @@ function splitFile(lang, partSize) {
     }
   });
   
-  fs.writeFileSync(`d:\\NextProject\\pdfcraft\\scratch\\pending-tool-content-${lang}-part1.json`, JSON.stringify(part1, null, 2), 'utf8');
-  fs.writeFileSync(`d:\\NextProject\\pdfcraft\\scratch\\pending-tool-content-${lang}-part2.json`, JSON.stringify(part2, null, 2), 'utf8');
+  fs.writeFileSync(`d:\\NextProject\\pdfkaro\\scratch\\pending-tool-content-${lang}-part1.json`, JSON.stringify(part1, null, 2), 'utf8');
+  fs.writeFileSync(`d:\\NextProject\\pdfkaro\\scratch\\pending-tool-content-${lang}-part2.json`, JSON.stringify(part2, null, 2), 'utf8');
   console.log(`Split ${lang} into part1 (${Object.keys(part1).length}) and part2 (${Object.keys(part2).length}).`);
 }
 

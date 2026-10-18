@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const TOOLS_DIR = 'd:\\NextProject\\pdfcraft\\src\\components\\tools';
-const MESSAGES_DIR = 'd:\\NextProject\\pdfcraft\\messages';
+const TOOLS_DIR = 'd:\\NextProject\\pdfkaro\\src\\components\\tools';
+const MESSAGES_DIR = 'd:\\NextProject\\pdfkaro\\messages';
 
 const recentTools = [
   'eink-optimizer',
@@ -99,5 +99,5 @@ allUsedKeys.forEach(k => {
 });
 
 console.log(`\nMatched ${keysInfo.length} physical keys in en.json:`);
-fs.writeFileSync('d:\\NextProject\\pdfcraft\\scratch\\recent-tools-keys.json', JSON.stringify(keysInfo, null, 2), 'utf8');
+fs.writeFileSync('d:\\NextProject\\pdfkaro\\scratch\\recent-tools-keys.json', JSON.stringify(keysInfo, null, 2), 'utf8');
 console.log(`Saved to scratch/recent-tools-keys.json`);

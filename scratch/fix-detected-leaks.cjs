@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const MESSAGES_DIR = 'd:\\NextProject\\pdfcraft\\messages';
-const TOOL_CONTENT_DIR = 'd:\\NextProject\\pdfcraft\\src\\config\\tool-content';
+const MESSAGES_DIR = 'd:\\NextProject\\pdfkaro\\messages';
+const TOOL_CONTENT_DIR = 'd:\\NextProject\\pdfkaro\\src\\config\\tool-content';
 
 console.log("=== STARTING LOCALIZATION LEAKS HOTFIX ===");
 

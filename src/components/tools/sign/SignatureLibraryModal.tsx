@@ -7,7 +7,7 @@ import {
   getSavedSignatures,
   saveSignature,
   deleteSignature,
-  PDFCraftSignature,
+  PDFKaroSignature,
   dataUrlToBlob,
 } from '@/lib/pdf/signature-storage';
 import { saveBlobFile } from '@/lib/tauri-bridge';
@@ -25,7 +25,7 @@ export function SignatureLibraryModal({
   viewerWindow,
   onOpenExtractor,
 }: SignatureLibraryModalProps) {
-  const [signatures, setSignatures] = useState<PDFCraftSignature[]>([]);
+  const [signatures, setSignatures] = useState<PDFKaroSignature[]>([]);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const fileInputRef = React.useRef<HTMLInputElement | null>(null);
 
@@ -53,9 +53,9 @@ export function SignatureLibraryModal({
         loadList();
 
         // If viewer is ready, immediately apply to document
-        if (viewerWindow && (viewerWindow as any).pdfcraftImportSignature) {
+        if (viewerWindow && (viewerWindow as any).pdfkaroImportSignature) {
           const blob = dataUrlToBlob(dataUrl);
-          await (viewerWindow as any).pdfcraftImportSignature(blob, saved.name);
+          await (viewerWindow as any).pdfkaroImportSignature(blob, saved.name);
           onClose();
         }
       };
@@ -76,11 +76,11 @@ export function SignatureLibraryModal({
     loadList();
   };
 
-  const handleApply = async (sig: PDFCraftSignature) => {
+  const handleApply = async (sig: PDFKaroSignature) => {
     try {
-      if (viewerWindow && (viewerWindow as any).pdfcraftImportSignature) {
+      if (viewerWindow && (viewerWindow as any).pdfkaroImportSignature) {
         const blob = dataUrlToBlob(sig.dataUrl);
-        await (viewerWindow as any).pdfcraftImportSignature(blob, sig.name);
+        await (viewerWindow as any).pdfkaroImportSignature(blob, sig.name);
         onClose();
       }
     } catch (e) {
@@ -88,7 +88,7 @@ export function SignatureLibraryModal({
     }
   };
 
-  const handleDownload = async (sig: PDFCraftSignature) => {
+  const handleDownload = async (sig: PDFKaroSignature) => {
     try {
       const blob = dataUrlToBlob(sig.dataUrl);
       await saveBlobFile(blob, `${sig.name}.png`);
@@ -97,7 +97,7 @@ export function SignatureLibraryModal({
     }
   };
 
-  const handleCopy = async (sig: PDFCraftSignature) => {
+  const handleCopy = async (sig: PDFKaroSignature) => {
     try {
       if (navigator.clipboard && window.ClipboardItem) {
         const blob = dataUrlToBlob(sig.dataUrl);

@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const filePath = 'd:\\NextProject\\pdfcraft\\scratch\\i18n-builder-extended.cjs';
+const filePath = 'd:\\NextProject\\pdfkaro\\scratch\\i18n-builder-extended.cjs';
 const content = fs.readFileSync(filePath, 'utf8');
 
 const lines = content.split('\n');

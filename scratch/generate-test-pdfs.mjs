@@ -3,7 +3,7 @@ import path from 'path';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 
 async function main() {
-  const scratchDir = 'd:/NextProject/pdfcraft/scratch';
+  const scratchDir = 'd:/NextProject/pdfkaro/scratch';
   if (!fs.existsSync(scratchDir)) {
     fs.mkdirSync(scratchDir, { recursive: true });
   }
@@ -14,7 +14,7 @@ async function main() {
 
   for (let i = 1; i <= 3; i++) {
     const page = pdfDoc.addPage([612, 792]);
-    page.drawText(`PDFCraft Test Document - Page ${i}`, {
+    page.drawText(`PDFKaro Test Document - Page ${i}`, {
       x: 50,
       y: 700,
       size: 24,

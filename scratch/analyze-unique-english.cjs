@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const MESSAGES_DIR = 'd:\\NextProject\\pdfcraft\\messages';
+const MESSAGES_DIR = 'd:\\NextProject\\pdfkaro\\messages';
 
 function getKeys(obj, prefix = '') {
   let keys = {};
@@ -26,7 +26,7 @@ function shouldTranslate(val, keyPath) {
     'pdf', 'dpi', 'cad', 'rgb', 'sha-256', 'tsa', 'rfc 3161', 'cny', 'usd', 'eur', 'jpy', 'zip', 'png', 'jpg', 'jpeg', 'svg',
     'outline', 'helvetica', 'noto sans sc', 'cni', 'pki', 'comodo', 'ssl.com', 'freetsa.org', 'digicert tsa', 'mesign tsa', 'sectigo tsa',
     'cny (chinese yuan)', 'usd (us dollar)', 'eur (euro)', 'jpy (japanese yen)',
-    'cny (\u4eba\u6c11\u5e01)', 'usd (\u7f8e\u5143)', 'eur (\u6b27\u5143)', 'jpy (\u65e5\u5143)', 'pdfcraft'
+    'cny (\u4eba\u6c11\u5e01)', 'usd (\u7f8e\u5143)', 'eur (\u6b27\u5143)', 'jpy (\u65e5\u5143)', 'pdfkaro'
   ]);
   if (skipWords.has(val.toLowerCase().trim())) return false;
   if (val.trim().startsWith('{') && val.trim().endsWith('}') && !val.includes(' ')) return false;
@@ -78,5 +78,5 @@ fallbackKeys.forEach(k => {
 console.log(`There are ${uniqueEnglishValues.size} unique English values among these keys.`);
 
 // Save key mapping to a scratch file
-fs.writeFileSync('d:\\NextProject\\pdfcraft\\scratch\\pending-translations-map.json', JSON.stringify(keyToEnAndZh, null, 2), 'utf8');
+fs.writeFileSync('d:\\NextProject\\pdfkaro\\scratch\\pending-translations-map.json', JSON.stringify(keyToEnAndZh, null, 2), 'utf8');
 console.log("Saved pending translations mapping to scratch/pending-translations-map.json");

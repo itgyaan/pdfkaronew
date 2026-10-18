@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const MESSAGES_DIR = 'd:\\NextProject\\pdfcraft\\messages';
-const TOOL_CONTENT_DIR = 'd:\\NextProject\\pdfcraft\\src\\config\\tool-content';
+const MESSAGES_DIR = 'd:\\NextProject\\pdfkaro\\messages';
+const TOOL_CONTENT_DIR = 'd:\\NextProject\\pdfkaro\\src\\config\\tool-content';
 
 const languages = ['zh-TW', 'ja', 'ko', 'de', 'es', 'fr', 'id', 'it', 'pt', 'vi', 'ar']; // ro falls back to en in config, but has json file
 
@@ -34,7 +34,7 @@ function shouldTranslate(val, keyPath) {
     'pdf', 'dpi', 'cad', 'rgb', 'sha-256', 'tsa', 'rfc 3161', 'cny', 'usd', 'eur', 'jpy', 'zip', 'png', 'jpg', 'jpeg', 'svg',
     'outline', 'helvetica', 'noto sans sc', 'cni', 'pki', 'comodo', 'ssl.com', 'freetsa.org', 'digicert tsa', 'mesign tsa', 'sectigo tsa',
     'cny (chinese yuan)', 'usd (us dollar)', 'eur (euro)', 'jpy (japanese yen)',
-    'cny (\u4eba\u6c11\u5e01)', 'usd (\u7f8e\u5143)', 'eur (\u6b27\u5143)', 'jpy (\u65e5\u5143)', 'pdfcraft'
+    'cny (\u4eba\u6c11\u5e01)', 'usd (\u7f8e\u5143)', 'eur (\u6b27\u5143)', 'jpy (\u65e5\u5143)', 'pdfkaro'
   ]);
   if (skipWords.has(val.toLowerCase().trim())) return false;
   
@@ -113,7 +113,7 @@ function extractToolContentMap(filePath) {
 }
 
 // Write the JSON report for messages
-const reportPath = 'd:\\NextProject\\pdfcraft\\scratch\\untranslated-messages-report.json';
+const reportPath = 'd:\\NextProject\\pdfkaro\\scratch\\untranslated-messages-report.json';
 fs.writeFileSync(reportPath, JSON.stringify(untranslatedMessages, null, 2), 'utf8');
 
 console.log("=== JSON Messages Analysis ===");
