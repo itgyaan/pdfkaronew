@@ -171,6 +171,42 @@ export const PDFStudio: React.FC<PDFStudioProps> = ({
     }, 3000);
   }, []);
 
+  // Seamlessly load and sync PDF ArrayBuffer directly into PDFViewerApplication
+  const loadPdfIntoViewer = useCallback(async (blobToLoad: Blob, filename: string) => {
+    try {
+      const iframe = iframeRef.current;
+      if (!iframe?.contentWindow) return;
+      const viewerWin = iframe.contentWindow as any;
+      const app = viewerWin.PDFViewerApplication;
+      if (!app) return;
+
+      if (app.initializedPromise) {
+        await app.initializedPromise;
+      }
+
+      const buffer = await blobToLoad.arrayBuffer();
+      await app.open({
+        data: new Uint8Array(buffer),
+        originalUrl: filename,
+      });
+    } catch (err) {
+      console.warn('PDFViewerApplication direct open fallback:', err);
+    }
+  }, []);
+
+  const handleIframeLoad = useCallback(async () => {
+    if (currentBlob && file) {
+      await loadPdfIntoViewer(currentBlob, file.name);
+    }
+  }, [currentBlob, file, loadPdfIntoViewer]);
+
+  // When currentBlob changes after in-place operations, sync viewer without iframe reload
+  useEffect(() => {
+    if (currentBlob && file && iframeRef.current?.contentWindow) {
+      loadPdfIntoViewer(currentBlob, file.name);
+    }
+  }, [currentBlob, file, loadPdfIntoViewer]);
+
   // Handle loading multiple files (or single file)
   const handleAddFiles = useCallback(
     (incomingFiles: FileList | File[]) => {
@@ -430,7 +466,7 @@ export const PDFStudio: React.FC<PDFStudioProps> = ({
       for (let i = 0; i < documents.length; i++) {
         const doc = documents[i];
         const cleanName = doc.name.replace(/\.pdf$/i, '');
-        const filename = `${cleanName}_crafted.pdf`;
+        const filename = `${cleanName}_pdfkaro.pdf`;
         zip.file(filename, doc.currentBlob);
       }
       const zipBlob = await zip.generateAsync({ type: 'blob' });
@@ -455,7 +491,7 @@ export const PDFStudio: React.FC<PDFStudioProps> = ({
     if (!currentBlob || !file) return;
 
     try {
-      const fileName = file.name.replace(/\.pdf$/i, '_crafted.pdf');
+      const fileName = file.name.replace(/\.pdf$/i, '_pdfkaro.pdf');
       const isDownloaded = await saveBlobFile(currentBlob, fileName);
       if (isDownloaded) {
         notify(
@@ -886,7 +922,8 @@ export const PDFStudio: React.FC<PDFStudioProps> = ({
             <main className="flex-1 relative bg-zinc-900/10 dark:bg-black/40 overflow-hidden">
               <iframe
                 ref={iframeRef}
-                src={withBasePath(`/pdfjs-viewer/viewer.html?file=${encodeURIComponent(pdfUrl)}`)}
+                src={withBasePath(`/pdfjs-viewer/viewer.html${pdfUrl ? `?file=${encodeURIComponent(pdfUrl)}` : ''}`)}
+                onLoad={handleIframeLoad}
                 className="w-full h-full border-0 absolute inset-0"
                 title={file.name}
               />
@@ -937,7 +974,10 @@ export const PDFStudio: React.FC<PDFStudioProps> = ({
               }}
             />
 
-            <div className="max-w-md w-full p-8 rounded-3xl border-2 border-dashed border-[hsl(var(--color-border))] bg-[hsl(var(--color-card)/0.4)] backdrop-blur-md flex flex-col items-center shadow-xl hover:border-[hsl(var(--color-primary))] transition-all duration-300 group">
+            <div
+              onClick={() => fileInputRef.current?.click()}
+              className="max-w-md w-full p-8 rounded-3xl border-2 border-dashed border-[hsl(var(--color-border))] bg-[hsl(var(--color-card)/0.4)] backdrop-blur-md flex flex-col items-center shadow-xl hover:border-[hsl(var(--color-primary))] transition-all duration-300 group cursor-pointer"
+            >
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[hsl(var(--color-primary)/0.2)] to-[hsl(var(--color-accent))] text-[hsl(var(--color-primary))] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Upload className="w-8 h-8" />
               </div>
@@ -955,7 +995,10 @@ export const PDFStudio: React.FC<PDFStudioProps> = ({
                 <Button
                   variant="primary"
                   size="md"
-                  onClick={() => fileInputRef.current?.click()}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    fileInputRef.current?.click();
+                  }}
                   className="flex-1 gap-2 shadow-lg shadow-[hsl(var(--color-primary)/0.2)] text-xs font-semibold py-2.5"
                 >
                   <FileText className="w-4 h-4" />
@@ -964,6 +1007,7 @@ export const PDFStudio: React.FC<PDFStudioProps> = ({
 
                 <Link
                   href={`/${locale}`}
+                  onClick={(e) => e.stopPropagation()}
                   className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-[hsl(var(--color-border))] text-xs font-semibold text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))] hover:bg-[hsl(var(--color-muted))] transition-all"
                 >
                   <LayoutGrid className="w-4 h-4" />

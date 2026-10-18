@@ -17569,15 +17569,25 @@ initCom(PDFViewerApplication);
 {
   const HOSTED_VIEWER_ORIGINS = new Set(["null", "http://mozilla.github.io", "https://mozilla.github.io"]);
   var validateFileURL = function (file) {
-    if (!file) {
+    if (!file || (typeof file === "string" && (file.startsWith("blob:") || file.startsWith("data:")))) {
       return;
     }
-    const viewerOrigin = URL.parse(window.location)?.origin || "null";
+    const safeOrigin = function (target, base) {
+      try {
+        if (typeof URL.parse === "function") {
+          return URL.parse(target, base)?.origin || "null";
+        }
+        return new URL(target, base).origin;
+      } catch {
+        return "null";
+      }
+    };
+    const viewerOrigin = safeOrigin(window.location);
     if (HOSTED_VIEWER_ORIGINS.has(viewerOrigin)) {
       return;
     }
-    const fileOrigin = URL.parse(file, window.location)?.origin;
-    if (fileOrigin === viewerOrigin) {
+    const fileOrigin = safeOrigin(file, window.location);
+    if (fileOrigin === viewerOrigin || fileOrigin === "null") {
       return;
     }
     const ex = new Error("file origin does not match viewer's");
