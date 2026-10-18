@@ -62,8 +62,8 @@ const CATEGORY_META: Record<
     labelZh: '页面组织与管理',
     labelEn: 'Organize & Manage',
     icon: FolderOpen,
-    accentColor: 'text-blue-500 dark:text-blue-400',
-    iconBg: 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
+    accentColor: 'text-orange-500 dark:text-orange-400',
+    iconBg: 'bg-orange-500/10 text-orange-600 dark:text-orange-400',
   },
   'edit-annotate': {
     labelZh: '编辑与标注',
@@ -261,7 +261,7 @@ export const StudioLeftRail: React.FC<StudioLeftRailProps> = ({
       <div className="h-12 border-b border-[hsl(var(--color-border))] px-3 flex items-center justify-between flex-shrink-0">
         {!isCollapsed && (
           <div className="flex items-center gap-2 min-w-0">
-            <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-tr from-[hsl(var(--color-primary))] to-sky-400 text-white shadow-xs">
+            <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-tr from-orange-500 to-amber-400 text-white shadow-xs shadow-orange-500/20">
               <Sparkles className="w-3.5 h-3.5" />
             </div>
             <div className="flex items-baseline gap-1.5 truncate">

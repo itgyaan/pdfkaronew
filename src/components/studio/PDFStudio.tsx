@@ -581,11 +581,11 @@ export const PDFStudio: React.FC<PDFStudioProps> = ({
             className="flex items-center gap-2 hover:opacity-80 transition-opacity shrink-0"
             title={isZh ? '返回首页' : 'Home'}
           >
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-[hsl(var(--color-primary))] to-[hsl(var(--color-accent))] shadow-sm">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-r from-orange-500 via-amber-500 to-amber-400 shadow-sm shadow-orange-500/25">
               <Sparkles className="h-4 w-4 text-white" />
             </div>
             <span className="font-bold text-sm tracking-tight hidden sm:inline text-[hsl(var(--color-foreground))]">
-              PDFKaro <span className="text-[hsl(var(--color-primary))] font-medium">Studio</span>
+              PDFKaro <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent font-bold">Studio</span>
             </span>
           </Link>
 
@@ -665,7 +665,7 @@ export const PDFStudio: React.FC<PDFStudioProps> = ({
               </Button>
 
               {/* Split Export Button */}
-              <div className="relative inline-flex items-center shadow-sm rounded-lg">
+              <div className="relative inline-flex items-center shadow-md shadow-orange-500/20 rounded-lg">
                 <Button
                   variant="primary"
                   size="sm"
@@ -679,7 +679,7 @@ export const PDFStudio: React.FC<PDFStudioProps> = ({
                 <button
                   type="button"
                   onClick={() => setIsExportMenuOpen((prev) => !prev)}
-                  className="h-8 px-1.5 rounded-r-lg bg-[hsl(var(--color-primary))] text-white hover:bg-[hsl(var(--color-primary-hover))] transition-colors flex items-center justify-center border-l border-white/20"
+                  className="h-8 px-1.5 rounded-r-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:brightness-105 transition-colors flex items-center justify-center border-l border-white/20"
                   title={isZh ? '更多导出格式' : 'More Export Formats'}
                   aria-label="More export formats"
                 >
@@ -706,7 +706,7 @@ export const PDFStudio: React.FC<PDFStudioProps> = ({
                       }}
                       className="w-full flex items-center gap-2.5 px-2.5 py-2 text-xs text-left rounded-lg hover:bg-[hsl(var(--color-muted))] text-[hsl(var(--color-foreground))] font-medium transition-colors"
                     >
-                      <FileType className="w-3.5 h-3.5 text-blue-500" />
+                      <FileType className="w-3.5 h-3.5 text-orange-500" />
                       <span>{isZh ? '导出为 Word (.docx)' : 'Export as Word (.docx)'}</span>
                     </button>
                     <button
@@ -976,10 +976,10 @@ export const PDFStudio: React.FC<PDFStudioProps> = ({
 
             <div
               onClick={() => fileInputRef.current?.click()}
-              className="max-w-md w-full p-8 rounded-3xl border-2 border-dashed border-[hsl(var(--color-border))] bg-[hsl(var(--color-card)/0.4)] backdrop-blur-md flex flex-col items-center shadow-xl hover:border-[hsl(var(--color-primary))] transition-all duration-300 group cursor-pointer"
+              className="max-w-md w-full p-8 rounded-3xl border-2 border-dashed border-[hsl(var(--color-border))] bg-[hsl(var(--color-card)/0.4)] backdrop-blur-md flex flex-col items-center shadow-xl hover:border-orange-500/70 hover:shadow-orange-500/10 transition-all duration-300 group cursor-pointer"
             >
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[hsl(var(--color-primary)/0.2)] to-[hsl(var(--color-accent))] text-[hsl(var(--color-primary))] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Upload className="w-8 h-8" />
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500/20 via-amber-500/25 to-yellow-500/30 text-orange-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-orange-500/20 transition-all">
+                <Upload className="w-8 h-8 text-orange-500" />
               </div>
 
               <h2 className="text-xl font-bold text-[hsl(var(--color-foreground))] mb-2">

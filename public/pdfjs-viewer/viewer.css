@@ -7777,3 +7777,15 @@ dialog :link{
     display:none;
   }
 }
+
+/* PDFKaro Warm Orange Theme Overrides */
+:root {
+  --color-accent-primary: #f97316 !important;
+  --button-primary-bg-color: #f97316 !important;
+  --tab-top-line-active-color: #f97316 !important;
+  --focus-ring-color: #f97316 !important;
+  --outline-color: #f97316 !important;
+  --selected-outline-color: #f97316 !important;
+  --comment-button-selected-bg: #f97316 !important;
+  --comment-focus-outline-color: #f97316 !important;
+}

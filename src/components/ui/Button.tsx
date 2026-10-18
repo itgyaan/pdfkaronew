@@ -14,9 +14,11 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary: `
-    bg-[hsl(var(--color-primary))] 
-    text-[hsl(var(--color-primary-foreground))] 
-    hover:bg-[hsl(var(--color-primary-hover))]
+    bg-gradient-to-r from-orange-500 via-amber-500 to-amber-500 
+    hover:from-orange-600 hover:via-amber-600 hover:to-amber-600
+    text-white 
+    shadow-sm shadow-orange-500/20
+    border-0
     focus-visible:ring-[hsl(var(--color-ring))]
   `,
   secondary: `
