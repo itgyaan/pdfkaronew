@@ -238,6 +238,32 @@ export function generatePrivacyMetadata(locale: Locale, translations?: { title: 
 }
 
 /**
+ * Generate metadata for the terms page
+ */
+export function generateTermsMetadata(locale: Locale, translations?: { title: string; description: string }): Metadata {
+  return generateBaseMetadata({
+    locale,
+    path: '/terms',
+    title: translations?.title || 'Terms of Service',
+    description: translations?.description || `${siteConfig.name} terms of service. Guidelines, terms, and conditions for using our private browser-based PDF tools.`,
+    keywords: ['terms of service', 'terms of use', 'legal', 'conditions', 'PDF tools'],
+  });
+}
+
+/**
+ * Generate metadata for the cookies page
+ */
+export function generateCookiesMetadata(locale: Locale, translations?: { title: string; description: string }): Metadata {
+  return generateBaseMetadata({
+    locale,
+    path: '/cookies',
+    title: translations?.title || 'Cookie Policy',
+    description: translations?.description || `${siteConfig.name} cookie policy. Learn how we use cookies and local storage on our platform.`,
+    keywords: ['cookies', 'cookie policy', 'local storage', 'privacy'],
+  });
+}
+
+/**
  * Generate metadata for the contact page
  */
 export function generateContactMetadata(locale: Locale, translations?: { title: string; description: string }): Metadata {

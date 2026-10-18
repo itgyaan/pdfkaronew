@@ -20,6 +20,14 @@
       "title": "Privacy Policy",
       "description": "PDFKaro privacy policy. Your files never leave your device - all processing happens locally in your browser."
     },
+    "terms": {
+      "title": "Terms of Service",
+      "description": "PDFKaro terms of service. Guidelines, terms, and conditions for using our private browser-based PDF tools."
+    },
+    "cookies": {
+      "title": "Cookie Policy",
+      "description": "PDFKaro cookie policy. Learn how we use minimal cookies and local storage to keep your documents private."
+    },
     "contact": {
       "title": "Contact Us",
       "description": "Get in touch with PDFKaro team. We'd love to hear from you."
